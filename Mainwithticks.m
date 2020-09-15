@@ -14,7 +14,7 @@ totreps = 1;
 
 ctable = comptable (range, dims);
 ressize = ctable (end,end);
-fnameprimitive = 'DNAIR';
+fnameprimitive = 'Sim-Results-';
 %columnheaders = compressedheaders (range,dims);
 %use this line of code to find the behavioral vectors which correspond to
 %each row and column of the transition matrix RData. The result should be
@@ -24,10 +24,12 @@ for i = 1:totreps
 clearvars -except location ctable ressize range dims visionits skipped ...
 leadersnum skippedzer totreps statreps fnameprimitive i
 location = 0;
-its = 0;
+its = 8500;
 %Import path, must be changed to where data is
 
-importfile = sprintf ('C:\\Users\\Spencer\\documents\\MATLAB\\Netlogo\\%s%d.txt',fnameprimitive, its);
+currentPath = pwd;
+fprintf('------ Input file path: %s\n', fullfile(currentPath, 'SampleTrajectoryData','KenaiSalmonFisheriesABM', 'smdmt(0)sdmt(0)cmdmt(0)cdmt(14)', sprintf('%s%d.txt', fnameprimitive, its)));
+importfile = fullfile(currentPath, 'SampleTrajectoryData','KenaiSalmonFisheriesABM', 'smdmt(0)sdmt(0)cmdmt(0)cdmt(14)', sprintf('%s%d.txt', fnameprimitive, its));
 testm = uint8 (importwithtime (importfile));
 % for its = 1:20
 %     importfile = sprintf ('C:\\Users\\Spencer\\documents\\MATLAB\\Netlogo\\%s%d.txt',fnameprimitive, its);
